@@ -36,6 +36,7 @@ void test_distribution(const char* name,F&& d){
 int main() {
     //test_distribution("uniform cube",fast_distributions::uniform_cube::generate<uint64_t>);
     test_distribution("sphere",fast_distributions::sphere::generate<uint64_t>);
+    //test_distribution("ball",fast_distributions::gaussian_ball::generate<uint64_t>);
 
     
     return 0;

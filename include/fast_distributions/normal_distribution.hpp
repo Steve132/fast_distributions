@@ -1,7 +1,7 @@
 #pragma once
 #include<cmath>
 #include "src/entropy.hpp"
-#include "src/murmur_generator.hpp"
+#include "murmur_generator.hpp"
 #include <random>
 #include "src/generate_base.hpp"
 namespace fast_distributions{

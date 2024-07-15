@@ -8,13 +8,15 @@
 #include "src/generate_base.hpp"
 
 namespace fast_distributions{
-    namespace {
+    namespace detail{
 
 
         template<unsigned int N>
         struct hyperball_base{
 
             struct ninety_nine_percentile{
+
+                std::array<float,N> center={};
                 float radius=1.0f;
             };
             struct param_type{
@@ -30,6 +32,7 @@ namespace fast_distributions{
                     normal_base::standard_params params(
                         normal_base::ninty_nine_percentile{-p.radius,p.radius});
                     std_dev=params.std_dev;
+                    center=p.center;
                 }
             };
         };
@@ -75,8 +78,9 @@ namespace fast_distributions{
                 hyperball_distribution dist;
                 std::array<float,N> res;
                 float sum=0.0f;
+                typename hyperball_distribution::param_type pa;
+                res=dist(s,pa);
                 for(unsigned int i=0;i<N;i++){
-                    res[i]=dist(s,p[i]);
                     sum+=res[i]*res[i];
                 }
                 sum=std::sqrt(sum);
@@ -87,12 +91,16 @@ namespace fast_distributions{
             }
         };
     }
-    template<unsigned int N>
-    using hyperball_distribution=gaussian_hyperball<N>;
 
     template<unsigned int N>
-    using hypersphere_distribution=gaussian_hypersphere<N>;
+    using gaussian_hyperball=detail::gaussian_hyperball<N>;
 
-    using sphere_distribution=gaussian_hypersphere<3>;
-    using circle_distribution=gaussian_hypersphere<2>;
+    using gaussian_ball=gaussian_hyperball<3>;
+    using gaussian_circle=gaussian_hyperball<2>;
+
+    template<unsigned int N>
+    using hypersphere=detail::gaussian_hypersphere<N>;
+
+    using sphere=detail::gaussian_hypersphere<3>;
+    using circle=detail::gaussian_hypersphere<2>;
 }

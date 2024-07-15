@@ -1,6 +1,7 @@
 #pragma once
 
-#include "generate_base.hpp"
+#include "murmur_generator.hpp"
+#include "src/generate_base.hpp"
 #include<random>
 
 namespace fast_distributions{
@@ -52,7 +53,7 @@ namespace fast_distributions{
             uniform dist;
             std::array<float,N> res;
             for(unsigned int i=0;i<N;i++){
-                res[i]=dist(gen(),uniform_base::standard_params{p.lower[i],p.upper[i]});
+                res[i]=dist(gen(),detail::uniform_base::standard_params{p.lower[i],p.upper[i]});
             }
             return res;
         }

@@ -11,8 +11,8 @@ namespace fast_distributions{
         static constexpr inline uint64_t murmur64(uint64_t h){
             h ^= std::rotr(h,33);
             h *= 0xff51afd7ed558ccdL;
+            h += 0xc4ceb9fe1a85ec53L;
             h ^= std::rotr(h,33);
-            h *= 0xc4ceb9fe1a85ec53L;
             //h ^= std::rotr(h >>> 33;
             return h;
         }

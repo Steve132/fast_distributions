@@ -7,7 +7,7 @@ add_library(fast_distributions
     ${FD_DIR}/src/entropy.hpp
     ${FD_DIR}/src/fast_sincos.hpp
     ${FD_DIR}/src/generate_base.hpp
-    ${FD_DIR}/src/murmur_generator.hpp
+    ${FD_DIR}/murmur_generator.hpp
     
     ${FD_DIR}/normal_distribution.hpp
     ${FD_DIR}/sphere_distribution.hpp

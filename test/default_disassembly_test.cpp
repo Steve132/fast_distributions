@@ -21,7 +21,7 @@ int main(){
     std::size_t N=1000;
     auto data = gen(
         [](){
-            return fast_distributions::hyperball_distribution<3>::generate(302);
+            return fast_distributions::sphere::generate(302);
         },
         N
     );

@@ -13,7 +13,6 @@ namespace fast_distributions{
 
         template<unsigned int N>
         struct hyperball_base{
-
             struct ninety_nine_percentile{
 
                 std::array<float,N> center={};
@@ -44,14 +43,16 @@ namespace fast_distributions{
         private:
             using normal_distribution=fast_distributions::normal;
         public:
-            using param_type=std::array<normal_distribution::param_type,D>;
+            using param_type=typename hyperball_base<D>::param_type;
             template<class SEED>
             auto operator()(const SEED& s,const param_type& p={}) noexcept{
                 std::array<float,D> res;
+                
                 normal dist;
                 default_random_generator gen(s);
                 for(unsigned int i=0;i<D;i++){
-                    res[i]=dist(gen(),p[i]);
+                    normal::param_type pa(p.center[i],p.std_dev);
+                    res[i]=dist(gen(),pa);
                 }
                 return res;
             }
@@ -84,8 +85,9 @@ namespace fast_distributions{
                     sum+=res[i]*res[i];
                 }
                 sum=std::sqrt(sum);
+                float r=p.radius/sum;
                 for(unsigned int i=0;i<N;i++){
-                    res[i]=p.radius*res[i]/sum+p.center[i];
+                    res[i]=r*res[i]+p.center[i];
                 }
                 return res;
             }

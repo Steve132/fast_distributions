@@ -1,7 +1,8 @@
 #pragma once
 
-#include "murmur_generator.hpp"
+#include "generators.hpp"
 #include "src/generate_base.hpp"
+#include "generators.hpp"
 #include<random>
 
 namespace fast_distributions{
@@ -20,7 +21,7 @@ namespace fast_distributions{
             using param_type=uniform_base::standard_params;
             template<class SEED>
             auto operator()(const SEED& s,const param_type& p=param_type{}) noexcept{
-                murmur_generator gen(s);
+                default_random_generator gen(s);
                 std::uniform_real_distribution<float> dist(p.lower,p.upper);
                 return dist(gen);
             }
@@ -49,7 +50,7 @@ namespace fast_distributions{
         };
         template<class SEED>
         auto operator()(const SEED& s,const param_type& p=param_type{}) noexcept{
-            murmur_generator gen(s);
+            default_random_generator gen(s);
             uniform dist;
             std::array<float,N> res;
             for(unsigned int i=0;i<N;i++){

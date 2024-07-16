@@ -3,6 +3,7 @@
 #include<cstdlib>
 #include<bit>
 #include<cstdint>
+#include<random>
 
 namespace fast_distributions{
     struct murmur_generator{
@@ -11,6 +12,7 @@ namespace fast_distributions{
         static constexpr inline uint64_t murmur64(uint64_t h){
             h ^= std::rotr(h,33);
             h *= 0xff51afd7ed558ccdL;
+            h += 0x4952E2DB49391E25L;
             h ^= std::rotr(h,33);
             h *= 0xc4ceb9fe1a85ec53L;
             //h ^= std::rotr(h >>> 33;
@@ -33,5 +35,5 @@ namespace fast_distributions{
         }
         
    };
-
+   using default_random_generator=std::independent_bits_engine<std::minstd_rand,64,uint64_t>;
 }

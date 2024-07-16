@@ -6,10 +6,10 @@
 #include<cstdint>
 #include<array>
 #include "src/generate_base.hpp"
+#include "generators.hpp"
 
 namespace fast_distributions{
     namespace detail{
-
 
         template<unsigned int N>
         struct hyperball_base{
@@ -48,8 +48,8 @@ namespace fast_distributions{
             template<class SEED>
             auto operator()(const SEED& s,const param_type& p={}) noexcept{
                 std::array<float,D> res;
-                normal_distribution dist;
-                murmur_generator gen(s);
+                normal dist;
+                default_random_generator gen(s);
                 for(unsigned int i=0;i<D;i++){
                     res[i]=dist(gen(),p[i]);
                 }

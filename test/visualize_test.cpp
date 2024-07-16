@@ -4,7 +4,7 @@
 #include <array>
 #include <fast_distributions/uniform_distribution.hpp>
 #include <fast_distributions/sphere_distribution.hpp>
-#include <fast_distributions/murmur_generator.hpp>
+#include <fast_distributions/generators.hpp>
 #include <fast_distributions/cone_distribution.hpp>
 
 template<class F>
@@ -20,7 +20,7 @@ auto gen(F&& f,size_t N){
 
 template<class F>
 void test_distribution(const char* name,F&& d){
-    fast_distributions::murmur_generator m(0);
+    fast_distributions::default_random_generator m(0);
 
     std::vector<visualize::v3> v=gen(
         [&m,&d](uint64_t){

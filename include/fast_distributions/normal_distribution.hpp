@@ -1,7 +1,7 @@
 #pragma once
 #include<cmath>
 #include "src/entropy.hpp"
-#include "murmur_generator.hpp"
+#include "generators.hpp"
 #include <random>
 #include "src/generate_base.hpp"
 namespace fast_distributions{
@@ -28,7 +28,7 @@ namespace fast_distributions{
             template<class SEED>
             auto operator()(const SEED& s,const param_type& p=param_type{}) noexcept{
                 std::normal_distribution<float> dist(p.mean,p.std_dev);
-                murmur_generator gen(s);
+                default_random_generator gen(s);
                 return dist(gen);
             }
         };

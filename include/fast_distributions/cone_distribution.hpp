@@ -6,8 +6,9 @@
 namespace fast_distributions{
     namespace detail{
         struct cone_base{
-            struct params_type{
-                
+            struct param_type{
+                float x;
+                float y;
             };
         };
     }
